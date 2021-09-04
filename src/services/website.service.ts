@@ -1,5 +1,6 @@
 import { rl } from '../interfaces/interfaces';
-import { folderCreation } from '../utils/folderCreation';
+import { folderCreation, indexCreation } from '../utils/folderCreation';
+import { exec } from 'child_process';
 
 const scrape = require('website-scraper');
 const PuppeteerPlugin = require('website-scraper-puppeteer');
@@ -36,10 +37,24 @@ export class websiteService {
   }
 
   createServer() {
+    let folderRes = {'path': ''};
 
     rl.question('What is going to be your server folder name?: ', (name) => {
-      folderCreation(name)
-    })
+      rl.question('What is going to be your server port?: ', (port) => {
+        rl.question('What is your database name?: ', (dbName) => {
+          folderRes = folderCreation(name);
+          indexCreation(folderRes.path, port, dbName);
+
+          exec(`
+            cd ${path.resolve('servers', name)} && 
+            npm init -y && 
+            npm i mongoose && npm i express && npm i cors
+          `)
+
+          rl.close();
+        });
+      });
+    });
 
   }
 
