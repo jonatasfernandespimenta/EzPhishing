@@ -1,4 +1,5 @@
 import { rl } from '../interfaces/interfaces';
+import { folderCreation } from '../utils/folderCreation';
 
 const scrape = require('website-scraper');
 const PuppeteerPlugin = require('website-scraper-puppeteer');
@@ -35,7 +36,11 @@ export class websiteService {
   }
 
   createServer() {
-    
+
+    rl.question('What is going to be your server folder name?: ', (name) => {
+      folderCreation(name)
+    })
+
   }
 
 }

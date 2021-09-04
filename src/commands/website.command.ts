@@ -7,7 +7,7 @@ export class websiteCommands extends websiteService {
     return this.websiteCloner();
   }
 
-  createServer() {
+  serverCreation() {
     this.createServer();
   }
 

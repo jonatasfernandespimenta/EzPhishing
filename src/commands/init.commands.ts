@@ -16,7 +16,7 @@ export class appCommands extends websiteCommands {
           break;
 
         case '02':
-          this.createServer();
+          this.serverCreation();
           break;
 
         default:
