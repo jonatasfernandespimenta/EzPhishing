@@ -6,6 +6,7 @@ const path = require('path');
 
 export class websiteService {
   websiteCloner = () => {
+    let websiteLocation = '';
     rl.question('Enter the URL of the website you want to clone: ', (url) => {
 
       const splitHttps = url.includes('https://') ? url.split('https://') : url.split('http://');
@@ -26,6 +27,15 @@ export class websiteService {
           })
         ]
       });
+
+      websiteLocation = path.resolve(__dirname, '..', '..', 'cloned_pages', siteName);
     });
-  }  
+
+    return {'done': true, 'message': `The website folder can be located at ${websiteLocation}`}
+  }
+
+  createServer() {
+    
+  }
+
 }

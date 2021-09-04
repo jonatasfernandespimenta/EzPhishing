@@ -5,7 +5,8 @@ export class appCommands extends websiteCommands {
   init() {
     console.log(
       'Available Commands: ',
-      '\n01 - Website Cloner'
+      '\n01 - Website Cloner',
+      '\n02 - Create Server'
     )
 
     rl.question('\n> ', (answer) => {
@@ -13,6 +14,11 @@ export class appCommands extends websiteCommands {
         case '01':
           this.websiteCloner();
           break;
+
+        case '02':
+          this.createServer();
+          break;
+
         default:
           console.log('Invalid Command');
           this.init();

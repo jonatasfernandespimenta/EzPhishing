@@ -4,6 +4,11 @@ import { rl } from '../interfaces/interfaces';
 export class websiteCommands extends websiteService {
 
   cloneWebsite() {
-    this.websiteCloner();
+    return this.websiteCloner();
   }
+
+  createServer() {
+    this.createServer();
+  }
+
 }
