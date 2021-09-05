@@ -10,10 +10,18 @@
     "website-scraper-puppeteer": "^0.1.5"
   },
   "scripts": {
-    "dev": "nodemon --watch 'src/' --exec 'ts-node src/index.ts' -e ts"
+    "dev": "nodemon --watch 'src/' --exec 'ts-node src/index.ts' -e ts",
+    "lint": "eslint src --ext .ts --fix"
   },
   "devDependencies": {
     "nodemon": "^2.0.12",
-    "ts-node": "^10.2.1"
+    "ts-node": "^10.2.1",
+    "eslint": "^7.30.0",
+    "eslint-config-airbnb-typescript": "^12.3.1",
+    "eslint-plugin-import": "2.22.0",
+    "eslint-plugin-jsx-a11y": "6.3.1",
+    "eslint-plugin-react": "7.20.3",
+    "eslint-plugin-react-hooks": "4.0.8",
+    "@typescript-eslint/eslint-plugin": "^4.17.0"
   }
 }

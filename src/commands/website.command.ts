@@ -1,8 +1,7 @@
-import { websiteService } from '../services/website.service';
+import { WebsiteService } from '../services/website.service';
 import { rl } from '../interfaces/interfaces';
 
-export class websiteCommands extends websiteService {
-
+export class websiteCommands extends WebsiteService {
   cloneWebsite() {
     return this.websiteCloner();
   }
@@ -10,5 +9,4 @@ export class websiteCommands extends websiteService {
   serverCreation() {
     this.createServer();
   }
-
 }

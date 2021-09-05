@@ -1,4 +1,4 @@
-import { websiteCommands } from "./website.command";
+import { websiteCommands } from './website.command';
 import { rl } from '../interfaces/interfaces';
 
 export class appCommands extends websiteCommands {
@@ -6,8 +6,8 @@ export class appCommands extends websiteCommands {
     console.log(
       'Available Commands: ',
       '\n01 - Website Cloner',
-      '\n02 - Create Server'
-    )
+      '\n02 - Create Server',
+    );
 
     rl.question('\n> ', (answer) => {
       switch (answer) {
@@ -24,7 +24,6 @@ export class appCommands extends websiteCommands {
           this.init();
           break;
       }
-    })
-
+    });
   }
 }

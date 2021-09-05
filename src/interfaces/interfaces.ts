@@ -1,7 +1,7 @@
 import * as readline from 'readline';
 
 export const rl = readline.createInterface({
-  input: process.stdin, 
+  input: process.stdin,
   output: process.stdout,
-  terminal: false
+  terminal: false,
 });
