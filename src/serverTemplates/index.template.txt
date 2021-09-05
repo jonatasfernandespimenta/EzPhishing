@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
-const mongoose = require('mongoose');
+const fs = require('fs');
+const path = require('path');
 
 const app = express();
 
@@ -8,14 +9,5 @@ app.use(express.json());
 app.use(cors());
 
 app.use(express.static('public'));
-app.use(express.static('files'));
-
-app.use('/static', express.static('public'));
-
-mongoose.connect('mongodb://localhost:27017/DB_NAME', {
-  useNewUrlParser: true
-});
-
-app.use(require('./routes'));
 
 app.listen(port);

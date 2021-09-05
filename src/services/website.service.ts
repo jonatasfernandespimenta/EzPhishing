@@ -1,10 +1,11 @@
 import { exec } from 'child_process';
+import path from 'path';
+import fs from 'fs-extra';
 import { rl } from '../interfaces/interfaces';
 import { folderCreation, indexCreation } from '../utils/folderCreation';
 
 const scrape = require('website-scraper');
 const PuppeteerPlugin = require('website-scraper-puppeteer');
-const path = require('path');
 
 export class WebsiteService {
   websiteCloner = () => {
@@ -40,23 +41,28 @@ export class WebsiteService {
 
     rl.question('What is going to be your server folder name?: ', (name) => {
       rl.question('What is going to be your server port?: ', (port) => {
-        rl.question('What is your database name?: ', (dbName) => {
-          rl.question('What is your website folder name?: ', (websiteFolder) => {
-            folderRes = folderCreation(name);
-            indexCreation(folderRes.path, port, dbName);
+        rl.question('What is your website folder name?: ', (websiteFolder) => {
+          folderRes = folderCreation(name);
+          indexCreation(folderRes.path, port);
 
-            const siteLocation = path.resolve(__dirname, '..', '..', 'cloned_pages', websiteFolder);
+          const siteLocation = path.resolve(process.cwd(), 'cloned_pages', websiteFolder);
+          const serverDestination = path.resolve(process.cwd(), 'servers', name);
 
-            exec(`
-              cd ${path.resolve('servers', name)} && 
-              npm init -y && 
-              mkdir ${path.resolve('servers', name, 'public')} &&
-              npm i mongoose && npm i express && npm i cors &&
-              cp -r ${siteLocation} ${path.resolve('servers', name, 'public')}
-            `);
+          console.log(siteLocation, serverDestination);
 
-            rl.close();
-          });
+          fs.copySync(siteLocation, path.resolve(serverDestination, 'public'));
+
+          // exec(`
+          //   cd ${path.resolve('servers', name)} &&
+          //   npm init -y &&
+          //   npm i express && npm i cors &&
+          //   cp -r ${siteLocation} ${path.resolve('servers', name)} &&
+          //   mv ${path.resolve('servers', name, name)} ${path.resolve('servers', name, 'public')}
+          // `);
+
+          exec(`cd ${serverDestination} && npm init -y && npm i express && npm i cors`);
+
+          rl.close();
         });
       });
     });
